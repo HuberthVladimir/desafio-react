@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
 import Header from '../Header';
 import './styles.scss';
 
-function DefaultLayout({ children }) {
+function DefaultLayout({ children }: { children: ReactNode}) {
   return (
     <>
       <Header />
