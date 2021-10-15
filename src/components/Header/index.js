@@ -1,5 +1,5 @@
 import react from '../../assets/react.jpeg';
-import './styles.css';
+import './styles.scss';
 
 function Header() {
   return (

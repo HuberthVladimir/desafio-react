@@ -1,5 +1,5 @@
 import Header from '../Header';
-import './styles.css';
+import './styles.scss';
 
 function DefaultLayout({ children }) {
   return (
