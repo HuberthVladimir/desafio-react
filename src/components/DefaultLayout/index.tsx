@@ -6,9 +6,9 @@ function DefaultLayout({ children }: { children: ReactNode}) {
   return (
     <>
       <Header />
-      <div className="container">
+      <main className="container">
         {children}
-      </div>
+      </main>
     </>
   );
 }
