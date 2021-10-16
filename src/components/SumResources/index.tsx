@@ -7,11 +7,12 @@ interface SumResourcesProps {
    memory?: string
    cpuAmount?: string
    disksAmount?: string
+   className?: string
 }
 
-export const SumResources = ({ selectedServers, memory, cpuAmount, disksAmount} : SumResourcesProps) => {
+export const SumResources = ({ selectedServers, memory, cpuAmount, disksAmount, className} : SumResourcesProps) => {
    return (
-      <TableContainer title="Sumário de recursos dos servidores">
+      <TableContainer title="Sumário de recursos dos servidores" className={className}>
          <main className="sum-resources">
             <div className="resources-table">
                <div className="titles">Servidores Selecionados</div>
