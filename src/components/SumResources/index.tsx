@@ -6,22 +6,23 @@ interface SumResourcesProps {
    memory?: string
    cpuAmount?: string
    disksAmount?: string
+   className?: string
 }
 
-export const SumResources = ({ selectedServers, memory, cpuAmount, disksAmount} : SumResourcesProps) => {
+export const SumResources = ({ selectedServers, memory, cpuAmount, disksAmount, className} : SumResourcesProps) => {
    return (
-      <section className="sum-resources">
+      <section className={`sum-resources ${className}`}>
          <header><span className="resources-title">Sumário de recursos dos servidores</span></header>
          <main>
             <div className="resources-table">
                <div className="titles">Servidores Selecionados</div>
-               <div className="content">{ selectedServers ? selectedServers : 'Nenhum servidor selecionado'}</div>
+               <div className="content">{ selectedServers ? `${selectedServers} servidores selecionados` : 'Nenhum servidor selecionado'}</div>
                <div className="titles">Total de Memória</div>
-               <div className="content">{ memory ? memory : 'Nenhum servidor selecionado'}</div>
+               <div className="content">{ memory ? `${memory} GB` : 'Nenhum servidor selecionado'}</div>
                <div className="titles">Total de CPUs</div>
-               <div className="content">{ cpuAmount ? cpuAmount : 'Nenhum servidor selecionado'}</div>
+               <div className="content">{ cpuAmount ? `${cpuAmount} vCPUs` : 'Nenhum servidor selecionado'}</div>
                <div className="titles">Total de Discos</div>
-               <div className="content">{ disksAmount ? disksAmount : 'Nenhum servidor selecionado'}</div>
+               <div className="content">{ disksAmount ? `${disksAmount} GB` : 'Nenhum servidor selecionado'}</div>
             </div>
          </main>
       </section>
