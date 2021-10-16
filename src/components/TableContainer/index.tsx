@@ -4,13 +4,12 @@ import './style.scss'
 interface TableContainerProps {
    children: ReactNode
    title: string
-   height?: number;
-   className?: string
+   height?: number
 }
 
-export const TableContainer = ({children, title, height = 15.43, className} : TableContainerProps) => {
+export const TableContainer = ({children, title, height = 15.43, } : TableContainerProps) => {
    return (
-      <section className={`table-container ${className}`} style={{ height: `${height}rem`}}>
+      <section className="table-container" style={{ height: `${height}rem`}}>
          <header><span>{title}</span></header>
 
          {children}
