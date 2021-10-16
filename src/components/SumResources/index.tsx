@@ -1,4 +1,5 @@
 import React from 'react'
+import { TableContainer } from '../TableContainer'
 import './style.scss'
 
 interface SumResourcesProps {
@@ -6,14 +7,12 @@ interface SumResourcesProps {
    memory?: string
    cpuAmount?: string
    disksAmount?: string
-   className?: string
 }
 
-export const SumResources = ({ selectedServers, memory, cpuAmount, disksAmount, className} : SumResourcesProps) => {
+export const SumResources = ({ selectedServers, memory, cpuAmount, disksAmount} : SumResourcesProps) => {
    return (
-      <section className={`sum-resources ${className}`}>
-         <header><span className="resources-title">Sumário de recursos dos servidores</span></header>
-         <main>
+      <TableContainer title="Sumário de recursos dos servidores">
+         <main className="sum-resources">
             <div className="resources-table">
                <div className="titles">Servidores Selecionados</div>
                <div className="content">{ selectedServers ? `${selectedServers} servidores selecionados` : 'Nenhum servidor selecionado'}</div>
@@ -25,6 +24,6 @@ export const SumResources = ({ selectedServers, memory, cpuAmount, disksAmount, 
                <div className="content">{ disksAmount ? `${disksAmount} GB` : 'Nenhum servidor selecionado'}</div>
             </div>
          </main>
-      </section>
+      </TableContainer>
    )
 }

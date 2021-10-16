@@ -1,0 +1,35 @@
+.table-container {
+   width: 100%;
+   border: 0.5px solid #B7B7B7;
+   border-radius: 0.625rem;
+   font-size: 0.875rem;
+   font-weight: 700;
+
+   @media (max-width: 1124px) {
+      width: 56.25rem;
+   }
+   
+   @media (max-width: 768px) {
+      width: 42.75rem;
+   }
+
+   @media (max-width: 425px) {
+      width: 24rem;
+   }
+
+   & > header {
+      display: flex;
+      align-items: center;
+      height: 3.43rem;
+      width: 100%;
+      background: #F0F0F0;
+      border-top-left-radius: 0.625rem;
+      border-top-right-radius: 0.625rem;
+      font-weight: 700;
+      
+      & > span {
+         margin-left: 0.625rem;
+         font-size: 1.25rem;
+      }
+   }
+}

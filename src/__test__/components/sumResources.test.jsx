@@ -16,10 +16,4 @@ describe('Component resources table', () => {
       expect(screen.queryByText('75 vCPUs')).toBeInTheDocument()
       expect(screen.queryByText('3096 GB')).toBeInTheDocument()
    })
-
-   it("Should receive class from props", () => {
-      const { container } =  render( <SumResources className="container" />)
-
-         expect(container.firstChild).toHaveClass('container')
-   })
 })
