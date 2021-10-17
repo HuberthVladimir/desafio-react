@@ -1,75 +1,78 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { TableContainer } from '../TableContainer'
+import api from '../../services/api'
 import './style.scss'
 
+interface ConfigServerProps {
+   cpuProvisioned: number
+   memoryProvisioned: number
+   totalDiskGB: number
+}
+
+interface ServerProps {
+   hostname: string
+   configuracao : ConfigServerProps
+   ip: string
+}
+
 export const ServerTable = () => {
+   const [ serverData, setServerData ] = useState<ServerProps[]>([])
+   const [selectedServer, setSelectedServer] = useState<ServerProps[]>([])
+
+   const handleChange = ( array: any) => {
+      const copySelectedServer = [...selectedServer]
+      const position = copySelectedServer.findIndex(data => data.hostname === array.hostname)
+      
+      if(position >= 0) {
+         copySelectedServer.splice(position, 1)
+         return setSelectedServer(copySelectedServer)
+      }
+      const teste = [...copySelectedServer, array]
+      return setSelectedServer(teste)
+   }
+
+   useEffect(() => {
+      (async () => {
+         const { data } = await api.get('/servers')
+         setServerData(data)
+      })()
+   }, [])
+
    return (
-      <TableContainer title="Tabela de servidores" height={23.93}>
+      <TableContainer title="Tabela de servidores" height={27.53}>
          <main className="inside-container">
             <table>
-               <tr>
-                  <th>Select</th>
-                  <th>Hostname</th>
-                  <th>Memória</th>
-                  <th>vCPUs</th>
-                  <th>Disco</th>
-                  <th>IP</th>
-               </tr>
+               <thead>
+                  <tr>
+                     <th>Select</th>
+                     <th>Hostname</th>
+                     <th>Memória</th>
+                     <th>vCPUs</th>
+                     <th>Disco</th>
+                     <th>IP</th>
+                  </tr>
+               </thead>
 
-               <tr>
-                  <td>
-                     <input type="checkbox"/>
-                  </td>
-                  <td>Server 1</td>
-                  <td>10Gb</td>
-                  <td>4 vCPUs</td>
-                  <td>200 GB</td>
-                  <td>10.0.0.1</td>
-               </tr>
-
-               <tr>
-                  <td>
-                     <input type="checkbox"/>
-                  </td>
-                  <td>Server 2</td>
-                  <td>10Gb</td>
-                  <td>4 vCPUs</td>
-                  <td>200 GB</td>
-                  <td>10.0.0.1</td>
-               </tr>
-
-               <tr>
-                  <td>
-                     <input type="checkbox"/>
-                  </td>
-                  <td>Server 3</td>
-                  <td>10Gb</td>
-                  <td>4 vCPUs</td>
-                  <td>200 GB</td>
-                  <td>10.0.0.1</td>
-               </tr>
-
-               <tr>
-                  <td>
-                     <input type="checkbox"/>
-                  </td>
-                  <td>Server 4</td>
-                  <td>10Gb</td>
-                  <td>4 vCPUs</td>
-                  <td>200 GB</td>
-                  <td>10.0.0.1</td>
-               </tr>
-
-               <tr>
-                  <td>
-                     <input type="checkbox"/>
-                  </td>
-                  <td>Server 5</td>
-                  <td>10Gb</td>
-                  <td>4 vCPUs</td>
-                  <td>200 GB</td>
-                  <td>10.0.0.1</td>
-               </tr>
+               <tbody>
+                  {serverData.map((data, index, array) => {
+                        return (
+                           <tr key={data.hostname} >
+                              <td>
+                                 <input 
+                                    type="checkbox"
+                                    id={`checkbox-${index}`}
+                                    onChange={() => handleChange(array[index])}
+                                 />
+                              </td>
+                              <td>{data.hostname}</td>
+                              <td>{data.configuracao.memoryProvisioned} Gb</td>
+                              <td>{data.configuracao.cpuProvisioned} vCPUs</td>
+                              <td>{data.configuracao.totalDiskGB} GB</td>
+                              <td>{data.ip}</td>
+                           </tr>         
+                        )
+                     })}
+               </tbody>
             </table>
          </main>
       </TableContainer>

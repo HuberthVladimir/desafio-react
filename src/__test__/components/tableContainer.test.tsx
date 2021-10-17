@@ -12,13 +12,13 @@ describe('component table container', () => {
       expect(screen.queryByText('Test title')).toBeInTheDocument()
    })
 
-   it("Should receive the class by props", () => {
-      const { container } = render(
-      <TableContainer className="container" title="Test title">
-         <h1>Test children
-      </h1> </TableContainer>)
+   // it("Should receive the class by props", () => {
+   //    const { container } = render(
+   //    <TableContainer  title="Test title">
+   //       <h1>Test children
+   //    </h1> </TableContainer>)
 
-      expect(container.firstChild).toHaveClass('container')
-   })
+   //    expect(container.firstChild).toHaveClass('container')
+   // })
 
 })
