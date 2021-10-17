@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { TableContainer } from '../TableContainer'
 import api from '../../services/api'
 import './style.scss'
+import { useGlobalContext } from '../../hooks/context'
 
 interface ConfigServerProps {
    cpuProvisioned: number
@@ -17,7 +18,11 @@ interface ServerProps {
 
 export const ServerTable = () => {
    const [ serverData, setServerData ] = useState<ServerProps[]>([])
-   const [selectedServer, setSelectedServer] = useState<ServerProps[]>([])
+   const { selectedServer, setSelectedServer } = useGlobalContext()
+
+   useEffect(() => {
+      console.log(selectedServer)
+   }, [selectedServer])
 
    const handleChange = ( array: any) => {
       const copySelectedServer = [...selectedServer]
