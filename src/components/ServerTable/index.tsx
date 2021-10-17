@@ -20,10 +20,6 @@ export const ServerTable = () => {
    const [ serverData, setServerData ] = useState<ServerProps[]>([])
    const { selectedServer, setSelectedServer } = useGlobalContext()
 
-   useEffect(() => {
-      console.log(selectedServer)
-   }, [selectedServer])
-
    const handleChange = ( array: any) => {
       const copySelectedServer = [...selectedServer]
       const position = copySelectedServer.findIndex(data => data.hostname === array.hostname)
