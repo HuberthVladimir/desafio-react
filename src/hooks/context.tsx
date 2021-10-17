@@ -1,25 +1,5 @@
 import React, {createContext, useContext, useState} from 'react'
-
-interface IProviderProps {
-   children?: React.ReactNode;
-}
-
-interface ConfigServerProps {
-   cpuProvisioned: number
-   memoryProvisioned: number
-   totalDiskGB: number
-}
-
-interface ServerProps {
-   hostname: string
-   configuracao : ConfigServerProps
-   ip: string
-}
-
-interface AppGlobalProps {
-   selectedServer: ServerProps[] | []
-   setSelectedServer: (arg: ServerProps[] | []) => void
-}
+import { ServerProps, IProviderProps, AppGlobalProps } from '../types'
 
 const useAppGlobalContext = createContext({} as AppGlobalProps)
 

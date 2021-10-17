@@ -3,18 +3,7 @@ import { TableContainer } from '../TableContainer'
 import api from '../../services/api'
 import './style.scss'
 import { useGlobalContext } from '../../hooks/context'
-
-interface ConfigServerProps {
-   cpuProvisioned: number
-   memoryProvisioned: number
-   totalDiskGB: number
-}
-
-interface ServerProps {
-   hostname: string
-   configuracao : ConfigServerProps
-   ip: string
-}
+import { ServerProps } from '../../types'
 
 export const ServerTable = () => {
    const [ serverData, setServerData ] = useState<ServerProps[]>([])
@@ -40,7 +29,7 @@ export const ServerTable = () => {
    }, [])
 
    return (
-      <TableContainer title="Tabela de servidores" height={27.53}>
+      <TableContainer title="Tabela de servidores" height={27}>
          <main className="inside-container">
             <table>
                <thead>
