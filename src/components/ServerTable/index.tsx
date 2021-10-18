@@ -4,21 +4,15 @@ import api from '../../services/api'
 import './style.scss'
 import { useGlobalContext } from '../../hooks/context'
 import { ServerProps } from '../../types'
+import { verifyArraySelectedServers } from '../../functions/serverTable'
 
 export const ServerTable = () => {
    const [ serverData, setServerData ] = useState<ServerProps[]>([])
    const { selectedServer, setSelectedServer } = useGlobalContext()
 
-   const handleChange = ( array: any) => {
-      const copySelectedServer = [...selectedServer]
-      const position = copySelectedServer.findIndex(data => data.hostname === array.hostname)
-      
-      if(position >= 0) {
-         copySelectedServer.splice(position, 1)
-         return setSelectedServer(copySelectedServer)
-      }
-      const teste = [...copySelectedServer, array]
-      return setSelectedServer(teste)
+   const handleCheckboxClick = (array : ServerProps) => {
+      const newValueArray = verifyArraySelectedServers(selectedServer, array)
+      return setSelectedServer(newValueArray)
    }
 
    useEffect(() => {
@@ -51,7 +45,7 @@ export const ServerTable = () => {
                                  <input 
                                     type="checkbox"
                                     id={`checkbox-${index}`}
-                                    onChange={() => handleChange(array[index])}
+                                    onChange={() => handleCheckboxClick(array[index])}
                                  />
                               </td>
                               <td>{data.hostname}</td>
